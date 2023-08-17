@@ -1,0 +1,18 @@
+uuid: e651e360-b872-4591-b38f-213674fea190
+langcode: en
+status: true
+dependencies:
+  module:
+    - blog_api
+    - serialization
+    - user
+id: blog_list
+plugin_id: blog_list
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

@@ -1,0 +1,17 @@
+uuid: c6d22664-e0bf-4234-ad7c-c3b21ad8f814
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Blogs
+type: blogs
+description: 'Content type to store blog details'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true
