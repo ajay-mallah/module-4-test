@@ -1,0 +1,5 @@
+name: 'blog_api'
+type: module
+description: 'Blog API module'
+package: Custom
+core_version_requirement: ^10
