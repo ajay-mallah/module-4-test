@@ -1,0 +1,4 @@
+services:
+  blogs_cron.old_nodes:
+    class: \Drupal\blogs_cron\OldNodesService
+    arguments: ["@entity_type.manager"]

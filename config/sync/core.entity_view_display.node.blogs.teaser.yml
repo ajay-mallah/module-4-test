@@ -6,10 +6,55 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.blogs.body
     - field.field.node.blogs.field_blog_tags
+    - field.field.node.blogs.field_like
+    - field.field.node.blogs.field_number_of_likes
     - node.type.blogs
   module:
+    - field_layout
+    - layout_builder
+    - layout_discovery
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+  layout_builder:
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          96a9c713-c4f8-4ae6-b9ee-1fe4899e4926:
+            uuid: 96a9c713-c4f8-4ae6-b9ee-1fe4899e4926
+            region: content
+            configuration:
+              id: 'extra_field_block:node:blogs:links'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 0
+            additional: {  }
+          4a1be13b-61f0-48a0-bb00-26e992878ec2:
+            uuid: 4a1be13b-61f0-48a0-bb00-26e992878ec2
+            region: content
+            configuration:
+              id: 'field_block:node:blogs:body'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_summary_or_trimmed
+                label: hidden
+                settings:
+                  trim_length: 600
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
 id: node.blogs.teaser
 targetEntityType: node
 bundle: blogs
@@ -30,3 +75,5 @@ content:
     region: content
 hidden:
   field_blog_tags: true
+  field_like: true
+  field_number_of_likes: true

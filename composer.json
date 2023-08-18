@@ -25,6 +25,7 @@
         "drupal/maillog": "^1.1",
         "drupal/otp": "^1.0@beta",
         "drupal/restui": "^1.21",
+        "drupal/twig_tweak": "^3.2",
         "drush/drush": "^12.1"
     },
     "conflict": {

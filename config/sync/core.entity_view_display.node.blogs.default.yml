@@ -5,10 +5,189 @@ dependencies:
   config:
     - field.field.node.blogs.body
     - field.field.node.blogs.field_blog_tags
+    - field.field.node.blogs.field_like
+    - field.field.node.blogs.field_number_of_likes
     - node.type.blogs
   module:
+    - field_layout
+    - layout_builder
+    - layout_discovery
+    - link
     - text
     - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: 'like section'
+          context_mapping: {  }
+        components:
+          7d9f828f-d782-4409-b2d6-9ff14d5ad500:
+            uuid: 7d9f828f-d782-4409-b2d6-9ff14d5ad500
+            region: content
+            configuration:
+              id: 'field_block:node:blogs:field_like'
+              label: like
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: hidden
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: '0'
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          ea0b95f2-4292-49c7-857d-57c334b7dcf0:
+            uuid: ea0b95f2-4292-49c7-857d-57c334b7dcf0
+            region: content
+            configuration:
+              id: 'field_block:node:blogs:field_number_of_likes'
+              label: 'number of likes'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: number_integer
+                label: inline
+                settings:
+                  thousand_separator: ''
+                  prefix_suffix: true
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: 'main block'
+          context_mapping: {  }
+        components:
+          6bf08fd7-587b-4d6f-b99a-35cb94303659:
+            uuid: 6bf08fd7-587b-4d6f-b99a-35cb94303659
+            region: content
+            configuration:
+              id: 'field_block:node:blogs:title'
+              label: Title
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: true
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
+          408efa43-c390-48c1-9f20-6c946dc561cf:
+            uuid: 408efa43-c390-48c1-9f20-6c946dc561cf
+            region: content
+            configuration:
+              id: 'field_block:node:blogs:body'
+              label: Body
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_summary_or_trimmed
+                label: hidden
+                settings:
+                  trim_length: 50
+                third_party_settings: {  }
+            weight: 5
+            additional: {  }
+          cd52f969-1015-4739-aedb-3fec3ffbd686:
+            uuid: cd52f969-1015-4739-aedb-3fec3ffbd686
+            region: content
+            configuration:
+              id: 'field_block:node:blogs:field_blog_tags'
+              label: Tags
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_label
+                label: hidden
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 6
+            additional: {  }
+          d4a96e42-f48d-4ffb-bea5-16d3bfa9434a:
+            uuid: d4a96e42-f48d-4ffb-bea5-16d3bfa9434a
+            region: content
+            configuration:
+              id: 'field_block:node:blogs:created'
+              label: 'Authored on'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: timestamp
+                label: inline
+                settings:
+                  date_format: medium
+                  custom_date_format: ''
+                  timezone: ''
+                  tooltip:
+                    date_format: long
+                    custom_date_format: ''
+                  time_diff:
+                    enabled: false
+                    future_format: '@interval hence'
+                    past_format: '@interval ago'
+                    granularity: 2
+                    refresh: 60
+                    description: ''
+                third_party_settings: {  }
+            weight: 7
+            additional: {  }
+          6c5e52c7-8107-45ca-9f7a-5dc83f2240dd:
+            uuid: 6c5e52c7-8107-45ca-9f7a-5dc83f2240dd
+            region: content
+            configuration:
+              id: 'field_block:node:blogs:uid'
+              label: 'Authored by'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_label
+                label: inline
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 8
+            additional: {  }
+        third_party_settings: {  }
 id: node.blogs.default
 targetEntityType: node
 bundle: blogs
@@ -28,6 +207,27 @@ content:
       link: true
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_like:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_number_of_likes:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 103
     region: content
   links:
     settings: {  }

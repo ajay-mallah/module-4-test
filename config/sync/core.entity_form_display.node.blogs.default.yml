@@ -5,10 +5,20 @@ dependencies:
   config:
     - field.field.node.blogs.body
     - field.field.node.blogs.field_blog_tags
+    - field.field.node.blogs.field_like
+    - field.field.node.blogs.field_number_of_likes
     - node.type.blogs
   module:
+    - field_layout
+    - layout_discovery
+    - link
     - path
     - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
 id: node.blogs.default
 targetEntityType: node
 bundle: blogs
@@ -38,6 +48,21 @@ content:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_like:
+    type: link_default
+    weight: 124
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_number_of_likes:
+    type: number
+    weight: 123
+    region: content
+    settings:
       placeholder: ''
     third_party_settings: {  }
   path:
