@@ -1,0 +1,4 @@
+# Main theme library.
+like:
+  js:
+    js/like.js: {}

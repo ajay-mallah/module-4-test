@@ -1,0 +1,5 @@
+name: custom_theme
+type: theme
+description: 'Custom sub theme'
+core_version_requirement: '>=9.2'
+base theme: claro

@@ -1,0 +1,25 @@
+uuid: 170d4d92-fdac-4ecf-8c08-51ee2318f17a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_number_of_likes
+    - node.type.blogs
+id: node.blogs.field_number_of_likes
+field_name: field_number_of_likes
+entity_type: node
+bundle: blogs
+label: 'number of likes'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

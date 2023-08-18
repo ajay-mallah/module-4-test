@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for blogs_cron module.
+ */
+
+/**
+* Implements hook_cron().
+*/
+function blogs_cron_cron() {
+  $old_nodes = \Drupal::service('blogs_cron.old_nodes')->load();
+  foreach ($old_nodes as $node) {
+    $node->delete();
+  }
+ }
+

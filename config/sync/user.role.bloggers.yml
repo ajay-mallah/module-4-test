@@ -1,0 +1,16 @@
+uuid: 2ef19627-a6b1-4625-b581-5bd69ac644f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.blogs
+  module:
+    - node
+id: bloggers
+label: Bloggers
+weight: 4
+is_admin: null
+permissions:
+  - 'change own username'
+  - 'create blogs content'
+  - 'edit own blogs content'

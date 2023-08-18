@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for like_module module.
+ */
+
+ /**
+  * Implements hook_preprocess_Hook for blogs content type.
+  */
+ function like_module_preprocess_node(&$variables) {
+  $nid = $variables['node']->id();
+
+  if($variables['node']->bundle() == "blogs"){
+    $variables['#attached']['library'][] = 'like_module/like';
+  }
+}

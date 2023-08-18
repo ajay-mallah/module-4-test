@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for custom_registration module.
+ */
+
+ use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\UserInterface;
+
+ /**
+  * @implements hook_form_FORM_ID_alter for custom_registration.
+  */
+function custom_registration_form_user_register_form_alter(array &$form, FormStateInterface $form_state) {
+  // Fetching current user from the drupal service
+  $current_user = \Drupal::currentUser();
+  if (!$current_user->isAuthenticated()) {
+    $form['account']['roles']['#access'] = true;
+    $form['account']['roles']['#options'] = [
+      "bloggers" => "Bloggers",
+      "guest_bloggers" => "Guest Bloggers"
+    ];
+  }
+}
+
+ /**
+  * Implements hook_mail.
+  */
+  function custom_registration_mail($key, &$message, $params) {
+    // options array for the message body
+    $options = [
+      'langcode' => $message['langcode'],
+    ];
+  
+    switch ($key) { 
+      case 'insert_node':
+        $message['from'] = Drupal::config('system.site')->get('mail');
+        $message['subject'] = t('Your mail subject is : @subject', [
+          '@subject' => $params['title'],
+          $options,
+        ]);
+        $message['body'][] = Html::escape($params['body']);
+        break;
+    }
+   }
+  
+  /**
+  * A function to send mail.
+  */
+  function custom_registration_sendmail($key, $body, $title) {
+  $mailManager = Drupal::service('plugin.manager.mail');
+  $module = 'custom_registration';
+  $to = Drupal::currentUser()->getEmail();
+  $params['body'] = $body;
+  $params['title'] = $title;
+  $langcode = Drupal::currentUser()->getPreferredLangcode();
+  $send = TRUE;
+
+  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+  if (!$result['result']) { 
+    $message = t('There was a problem sending your email notification to @email.', array('@email' => $to));
+    \Drupal::logger('mail_test')->error($message);
+    return;
+  }
+  $message = t('An email notification has been sent to @email ', array('@email' => $to));
+  }
